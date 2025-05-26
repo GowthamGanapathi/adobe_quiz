@@ -33,6 +33,18 @@ const getRandomQuestions = (questions: Question[], count: number) => {
   return shuffled.slice(0, count);
 };
 
+// Utility function to render large emojis in questions
+function renderQuestionWithLargeEmoji(question: string) {
+  // This regex matches most single Unicode emojis
+  return question.split(/(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu).map((part, idx) =>
+    /\p{Emoji_Presentation}|\p{Extended_Pictographic}/u.test(part) ? (
+      <span key={idx} style={{ fontSize: '2.5em', verticalAlign: 'middle' }}>{part}</span>
+    ) : (
+      part
+    )
+  );
+}
+
 export default function QuizPage() {
   const params = useParams<{ userId: string }>();
   const userId = params.userId;
@@ -221,7 +233,7 @@ export default function QuizPage() {
               className="space-y-6"
             >
               <h2 className="text-xl font-semibold text-gray-800">
-                {currentQuestion.question}
+                {renderQuestionWithLargeEmoji(currentQuestion.question)}
               </h2>
 
               <div className="grid gap-3">
