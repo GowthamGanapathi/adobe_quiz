@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrophyIcon, UsersIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { TrophyIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 interface UserResult {
   name: string;
@@ -118,40 +118,6 @@ export default function ResultsPage() {
             </h3>
             <p className="text-3xl font-bold text-green-600">
               {stats.completedParticipants}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-white rounded-xl shadow-lg p-6"
-          >
-            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-purple-100 mb-4">
-              <TrophyIcon className="h-6 w-6 text-purple-600" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Average Score
-            </h3>
-            <p className="text-3xl font-bold text-purple-600">
-              {stats.averageScore.toFixed(1)}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white rounded-xl shadow-lg p-6"
-          >
-            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-orange-100 mb-4">
-              <ClockIcon className="h-6 w-6 text-orange-600" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Average Time
-            </h3>
-            <p className="text-3xl font-bold text-orange-600">
-              {Math.round(stats.averageTime)}s
             </p>
           </motion.div>
         </div>
