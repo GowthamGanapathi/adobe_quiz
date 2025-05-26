@@ -118,7 +118,7 @@ export default function QuizPage() {
   }, [fetchQuestions]);
 
   useEffect(() => {
-    if (quizState.currentQuestionIndex >= questions.length) {
+    if (questions.length > 0 && quizState.currentQuestionIndex >= questions.length) {
       handleQuizCompletion();
       return;
     }
