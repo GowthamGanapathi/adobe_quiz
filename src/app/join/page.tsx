@@ -10,7 +10,6 @@ export default function JoinPage() {
   const [formData, setFormData] = useState({
     name: '',
     ldap: '',
-    mobileNumber: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -80,21 +79,6 @@ export default function JoinPage() {
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-900"
                 value={formData.ldap}
                 onChange={(e) => setFormData({ ...formData, ldap: e.target.value })}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-900">
-                Mobile Number
-              </label>
-              <input
-                type="tel"
-                id="mobileNumber"
-                required
-                pattern="[0-9]{10}"
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-900"
-                value={formData.mobileNumber}
-                onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
               />
             </div>
 
