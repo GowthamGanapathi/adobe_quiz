@@ -50,41 +50,41 @@ export default function JoinPage() {
         className="w-full max-w-md"
       >
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Join the Quiz
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-900">
                 Full Name
               </label>
               <input
                 type="text"
                 id="name"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-900"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="ldap" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="ldap" className="block text-sm font-medium text-gray-900">
                 LDAP ID
               </label>
               <input
                 type="text"
                 id="ldap"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-900"
                 value={formData.ldap}
                 onChange={(e) => setFormData({ ...formData, ldap: e.target.value })}
               />
             </div>
 
             <div>
-              <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-900">
                 Mobile Number
               </label>
               <input
@@ -92,7 +92,7 @@ export default function JoinPage() {
                 id="mobileNumber"
                 required
                 pattern="[0-9]{10}"
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-900"
                 value={formData.mobileNumber}
                 onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
               />
