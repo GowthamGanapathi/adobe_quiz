@@ -56,7 +56,7 @@ export default function QuizPage() {
     timeTaken: 0,
     answers: [],
   });
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
   const [userCompleted, setUserCompleted] = useState<boolean | null>(null);
@@ -65,7 +65,7 @@ export default function QuizPage() {
   const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctanswer;
-    const timeTakenForQuestion = 5 - timeLeft;
+    const timeTakenForQuestion = 10 - timeLeft;
 
     setQuizState((prev) => ({
       ...prev,
@@ -83,7 +83,7 @@ export default function QuizPage() {
       currentQuestionIndex: prev.currentQuestionIndex + 1,
     }));
 
-    setTimeLeft(5);
+    setTimeLeft(10);
   }, [questions, quizState.currentQuestionIndex, timeLeft]);
 
   const handleTimeUp = useCallback(() => {
@@ -99,7 +99,7 @@ export default function QuizPage() {
           // If forced, use current state, or zero if nothing answered
           if (quizState.answers.length === 0) {
             score = 0;
-            timeTaken = 75;
+            timeTaken = 150;
           }
         }
         const response = await fetch(`/api/quiz/${userId}/complete`, {
@@ -162,14 +162,14 @@ export default function QuizPage() {
     return () => clearInterval(timer);
   }, [quizState.currentQuestionIndex, questions.length, handleQuizCompletion, handleTimeUp]);
 
-  // Auto-submit after 75 seconds
+  // Auto-submit after 150 seconds (15 questions * 10 seconds)
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!autoSubmitRef.current) {
         autoSubmitRef.current = true;
         handleQuizCompletion(true); // forced submit
       }
-    }, 75000); // 75 seconds
+    }, 150000); // 150 seconds (changed from 75 seconds)
     return () => clearTimeout(timer);
   }, [handleQuizCompletion]);
 
@@ -251,10 +251,10 @@ export default function QuizPage() {
       <div className="w-full max-w-2xl">
         <div className="bg-white rounded-xl shadow-lg p-6">
           <div className="flex justify-between items-center mb-6">
-            <div className="text-sm text-gray-600">
+            <div className="text-sm font-medium text-gray-900">
               Question {quizState.currentQuestionIndex + 1} of {questions.length}
             </div>
-            <div className="text-sm font-medium text-gray-600">
+            <div className="text-sm font-medium text-gray-900">
               Time Left: {timeLeft}s
             </div>
           </div>
@@ -267,7 +267,7 @@ export default function QuizPage() {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-gray-800">
+              <h2 className="text-xl font-semibold text-gray-900">
                 {renderQuestionWithLargeEmoji(currentQuestion.question)}
               </h2>
 
@@ -276,7 +276,7 @@ export default function QuizPage() {
                   <button
                     key={index}
                     onClick={() => handleAnswer(option)}
-                    className="w-full p-4 text-left rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                    className="w-full p-4 text-left rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-gray-900"
                   >
                     {option}
                   </button>
