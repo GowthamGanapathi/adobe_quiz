@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrophyIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { UsersIcon } from '@heroicons/react/24/outline';
+import Confetti from 'react-confetti';
 
 interface UserResult {
   name: string;
@@ -84,6 +85,7 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+      <Confetti />
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,23 +116,6 @@ export default function ResultsPage() {
             </h3>
             <p className="text-3xl font-bold text-blue-600">
               {stats.totalParticipants}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white rounded-xl shadow-lg p-6"
-          >
-            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
-              <TrophyIcon className="h-6 w-6 text-green-600" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Completed Quiz
-            </h3>
-            <p className="text-3xl font-bold text-green-600">
-              {stats.completedParticipants}
             </p>
           </motion.div>
         </div>
