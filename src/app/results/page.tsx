@@ -31,9 +31,14 @@ export default function ResultsPage() {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [showConfetti, setShowConfetti] = useState(true);
 
   useEffect(() => {
     fetchResults();
+    const interval = setInterval(() => {
+      setShowConfetti(prev => !prev);
+    }, 2000); // 2 seconds
+    return () => clearInterval(interval);
   }, []);
 
   const fetchResults = async () => {
@@ -85,7 +90,7 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-      <Confetti />
+      {showConfetti && <Confetti />}
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -101,7 +106,7 @@ export default function ResultsPage() {
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="flex justify-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,10 +116,10 @@ export default function ResultsPage() {
             <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
               <UsersIcon className="h-6 w-6 text-blue-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
               Total Participants
             </h3>
-            <p className="text-3xl font-bold text-blue-600">
+            <p className="text-3xl font-bold text-blue-600 text-center">
               {stats.totalParticipants}
             </p>
           </motion.div>
