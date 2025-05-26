@@ -21,17 +21,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create new user (do not await, fire-and-forget for faster UX)
-    User.create({ name, ldap, mobileNumber })
-      .then(user => {
-        console.log('User created:', user._id, 'Total time:', Date.now() - start, 'ms');
-      })
-      .catch(error => {
-        console.error('User creation error:', error);
-      });
-
-    // Respond immediately for better UX
-    return NextResponse.json({ message: 'Registration in progress. You will be redirected shortly.' });
+    // Create new user and await the result
+    const user = await User.create({ name, ldap, mobileNumber });
+    console.log('User created:', user._id, 'Total time:', Date.now() - start, 'ms');
+    return NextResponse.json({ userId: user._id });
   } catch (error) {
     console.error('Registration error:', error);
     return NextResponse.json(
