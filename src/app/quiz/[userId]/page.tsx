@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -60,6 +60,7 @@ export default function QuizPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
   const [userCompleted, setUserCompleted] = useState<boolean | null>(null);
+  const autoSubmitRef = useRef(false);
 
   const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
@@ -89,30 +90,41 @@ export default function QuizPage() {
     handleAnswer(''); // Empty string indicates time up
   }, [handleAnswer]);
 
-  const handleQuizCompletion = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/quiz/${userId}/complete`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          score: quizState.score,
-          timeTaken: quizState.timeTaken,
-          answers: quizState.answers,
-        }),
-      });
+  const handleQuizCompletion = useCallback(
+    async (forced = false) => {
+      try {
+        let score = quizState.score;
+        let timeTaken = quizState.timeTaken;
+        if (forced) {
+          // If forced, use current state, or zero if nothing answered
+          if (quizState.answers.length === 0) {
+            score = 0;
+            timeTaken = 75;
+          }
+        }
+        const response = await fetch(`/api/quiz/${userId}/complete`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            score,
+            timeTaken,
+          }),
+        });
 
-      if (!response.ok) throw new Error('Failed to save quiz results');
-      
-      setShowConfetti(true);
-      setTimeout(() => {
-        router.push('/results');
-      }, 3000);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to save quiz results');
-    }
-  }, [userId, quizState, router]);
+        if (!response.ok) throw new Error('Failed to save quiz results');
+
+        setShowConfetti(true);
+        setTimeout(() => {
+          router.push('/results');
+        }, 3000);
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : 'Failed to save quiz results');
+      }
+    },
+    [userId, quizState, router]
+  );
 
   const fetchQuestions = useCallback(async () => {
     try {
@@ -149,6 +161,29 @@ export default function QuizPage() {
 
     return () => clearInterval(timer);
   }, [quizState.currentQuestionIndex, questions.length, handleQuizCompletion, handleTimeUp]);
+
+  // Auto-submit after 75 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!autoSubmitRef.current) {
+        autoSubmitRef.current = true;
+        handleQuizCompletion(true); // forced submit
+      }
+    }, 75000); // 75 seconds
+    return () => clearTimeout(timer);
+  }, [handleQuizCompletion]);
+
+  // Auto-submit on page unload
+  useEffect(() => {
+    const handleUnload = () => {
+      if (!autoSubmitRef.current) {
+        autoSubmitRef.current = true;
+        handleQuizCompletion(true); // forced submit
+      }
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, [handleQuizCompletion]);
 
   // Fetch user info on mount
   useEffect(() => {
