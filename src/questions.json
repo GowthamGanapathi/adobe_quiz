@@ -1,82 +1,218 @@
 [
   {
-    "question": "What is the capital of France?",
-    "option1": "Berlin",
-    "option2": "London",
-    "option3": "Paris",
-    "option4": "Madrid",
-    "correctanswer": "Paris"
+    "question": "😲😄Guess the Office Scenario!",
+    "option1": "Inbox Overflow",
+    "option2": "Emergency Exit",
+    "option3": "Brainstorm Session",
+    "option4": "Morning Meeting",
+    "correctanswer": ""
   },
   {
-    "question": "Which planet is known as the Red Planet?",
-    "option1": "Earth",
-    "option2": "Mars",
-    "option3": "Jupiter",
-    "option4": "Saturn",
-    "correctanswer": "Mars"
+    "question": "Decode the Emoji Clue!",
+    "option1": "No Headphones Policy",
+    "option2": "Silent Mode",
+    "option3": "Focus Mode",
+    "option4": "Waiting for Approval",
+    "correctanswer": ""
   },
   {
-    "question": "Who wrote 'Romeo and Juliet'?",
-    "option1": "William Shakespeare",
-    "option2": "Charles Dickens",
-    "option3": "Jane Austen",
-    "option4": "Mark Twain",
-    "correctanswer": "William Shakespeare"
+    "question": "Crack the Emoji Code",
+    "option1": "Coffee’s Gone Cold",
+    "option2": "Lunch Break",
+    "option3": "No Internet",
+    "option4": "Calendar Reminder",
+    "correctanswer": ""
   },
   {
-    "question": "What is the largest ocean on Earth?",
-    "option1": "Atlantic Ocean",
-    "option2": "Indian Ocean",
-    "option3": "Arctic Ocean",
-    "option4": "Pacific Ocean",
-    "correctanswer": "Pacific Ocean"
+    "question": "Brain vs Emoji",
+    "option1": "Office Birthday",
+    "option2": "Calendar Reminder",
+    "option3": "Silent Mode",
+    "option4": "No Internet",
+    "correctanswer": ""
   },
   {
-    "question": "What is the chemical symbol for gold?",
-    "option1": "Au",
-    "option2": "Ag",
-    "option3": "Gd",
-    "option4": "Go",
-    "correctanswer": "Au"
+    "question": "Emoji Mystery Challenge",
+    "option1": "Inbox Overflow",
+    "option2": "Idea Generation",
+    "option3": "System Reboot",
+    "option4": "Workstation",
+    "correctanswer": ""
   },
   {
-    "question": "Which country hosted the 2016 Summer Olympics?",
-    "option1": "China",
-    "option2": "Brazil",
-    "option3": "UK",
-    "option4": "Russia",
-    "correctanswer": "Brazil"
+    "question": "Mind Over Emoji",
+    "option1": "Idea Generation",
+    "option2": "Calendar Reminder",
+    "option3": "Morning Meeting",
+    "option4": "Office Birthday",
+    "correctanswer": ""
   },
   {
-    "question": "What is the hardest natural substance?",
-    "option1": "Gold",
-    "option2": "Iron",
-    "option3": "Diamond",
-    "option4": "Silver",
-    "correctanswer": "Diamond"
+    "question": "What’s the Hidden Meaning?",
+    "option1": "Brainstorm Session",
+    "option2": "Morning Meeting",
+    "option3": "Workstation",
+    "option4": "Office Breakfast",
+    "correctanswer": ""
   },
   {
-    "question": "Who painted the Mona Lisa?",
-    "option1": "Vincent Van Gogh",
-    "option2": "Pablo Picasso",
-    "option3": "Leonardo da Vinci",
-    "option4": "Claude Monet",
-    "correctanswer": "Leonardo da Vinci"
+    "question": "Emoji Mystery Challenge",
+    "option1": "Performance Review",
+    "option2": "Calendar Reminder",
+    "option3": "Client Call",
+    "option4": "Nice to Meet You",
+    "correctanswer": ""
   },
   {
-    "question": "What is the smallest prime number?",
-    "option1": "0",
-    "option2": "1",
-    "option3": "2",
-    "option4": "3",
-    "correctanswer": "2"
+    "question": "Emoji Guessing Game",
+    "option1": "Emergency Exit",
+    "option2": "Brainstorm Session",
+    "option3": "Waiting for Approval",
+    "option4": "Brain Freeze",
+    "correctanswer": ""
   },
   {
-    "question": "Which language is primarily spoken in Brazil?",
-    "option1": "Spanish",
-    "option2": "Portuguese",
-    "option3": "French",
-    "option4": "English",
-    "correctanswer": "Portuguese"
+    "question": "Feel the Emoji Vibe",
+    "option1": "Midday Slump",
+    "option2": "Work From Vacation",
+    "option3": "Calendar Reminder",
+    "option4": "System Reboot",
+    "correctanswer": ""
+  },
+  {
+    "question": "Think Fast! What Does This Mean?",
+    "option1": "Inbox Overflow",
+    "option2": "Training Session",
+    "option3": "Sanitizing Hands",
+    "option4": "System Reboot",
+    "correctanswer": ""
+  },
+  {
+    "question": "Decode the Emoji Clue!",
+    "option1": "I need tea",
+    "option2": "Coffee’s Gone Cold",
+    "option3": "Focus Mode",
+    "option4": "Cold Coffee",
+    "correctanswer": ""
+  },
+  {
+    "question": "Emoji Interpretation Test",
+    "option1": "Vehicle Key",
+    "option2": "Office Birthday",
+    "option3": "Locker Key",
+    "option4": "Password Reset",
+    "correctanswer": ""
+  },
+  {
+    "question": "Crack the Emoji Code",
+    "option1": "Performance Review",
+    "option2": "Slow Work Day",
+    "option3": "Possibility of Rain?",
+    "option4": "Thinking Out Loud",
+    "correctanswer": ""
+  },
+  {
+    "question": "Lightning Round: Emoji Edition",
+    "option1": "Calendar Reminder",
+    "option2": "Performance Review",
+    "option3": "Brainstorm Session",
+    "option4": "Work From Vacation",
+    "correctanswer": ""
+  },
+  {
+    "question": "Expressed in Emoji!",
+    "option1": "Inbox Overflow",
+    "option2": "Sent an Email",
+    "option3": "No Internet",
+    "option4": "Signing Documents",
+    "correctanswer": ""
+  },
+  {
+    "question": "Emoji IQ Test",
+    "option1": "Sanitizing Hands",
+    "option2": "IT Fix in Progress",
+    "option3": "Hi-fi",
+    "option4": "Inbox Overflow",
+    "correctanswer": ""
+  },
+  {
+    "question": "The Great Emoji Guess-Off",
+    "option1": "Letter Pad",
+    "option2": "Speaker",
+    "option3": "Coffee’s Gone Cold",
+    "option4": "Announcement",
+    "correctanswer": ""
+  },
+  {
+    "question": "Expressed in Emoji!",
+    "option1": "Cake Shop",
+    "option2": "Coffee and Bread",
+    "option3": "Chai Point",
+    "option4": "Office Breakfast",
+    "correctanswer": ""
+  },
+  {
+    "question": "Hidden Message in Emojis",
+    "option1": "Handwriting",
+    "option2": "Signing Documents",
+    "option3": "Writing Pad",
+    "option4": "Notepad",
+    "correctanswer": ""
+  },
+  {
+    "question": "What’s the Hidden Meaning?",
+    "option1": "Brainstorm Session",
+    "option2": "Monthly Receipt",
+    "option3": "Person Missing !!",
+    "option4": "Audit Day",
+    "correctanswer": ""
+  },
+  {
+    "question": "Emoji Guessing Game",
+    "option1": "Silent Mode",
+    "option2": "Not Speaking",
+    "option3": "Brain Freeze",
+    "option4": "Ice Cubes",
+    "correctanswer": ""
+  },
+  {
+    "question": "Emoji Translator Needed!",
+    "option1": "Silence, please!",
+    "option2": "Training Session",
+    "option3": "Morning Meeting",
+    "option4": "Focus Mode",
+    "correctanswer": ""
+  },
+  {
+    "question": "Feel the Emoji Vibe",
+    "option1": "Once sec please",
+    "option2": "One",
+    "option3": "Once in a blue moon",
+    "option4": "Blue moon",
+    "correctanswer": ""
+  },
+  {
+    "question": "What’s the Emoji Saying?",
+    "option1": "Green Apples are Stopped",
+    "option2": "Stop visiting the doctor every day",
+    "option3": "Apples are coming in sunlight",
+    "option4": "An apple a day keeps the doctor away",
+    "correctanswer": ""
+  },
+  {
+    "question": "Feel the Emoji Vibe",
+    "option1": "Idea Generation",
+    "option2": "Audit Day",
+    "option3": "Report Card",
+    "option4": "Electricity Report",
+    "correctanswer": ""
+  },
+  {
+    "question": "Emoji Guessing Game",
+    "option1": "Dropping Off",
+    "option2": "None of the above",
+    "option3": "BRB",
+    "option4": "Take Right",
+    "correctanswer": ""
   }
-] 
+]
