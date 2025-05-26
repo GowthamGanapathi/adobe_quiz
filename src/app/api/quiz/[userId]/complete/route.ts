@@ -3,7 +3,11 @@ import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
 import mongoose from 'mongoose';
 
-export async function POST(request: NextRequest, { params }) {
+interface Params {
+  userId: string;
+}
+
+export async function POST(request: NextRequest, { params }: { params: Params }) {
   try {
     await connectDB();
 
