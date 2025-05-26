@@ -3,15 +3,13 @@ import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
 import mongoose from 'mongoose';
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, { params }) {
   try {
     await connectDB();
 
     const { score, timeTaken, answers } = await request.json();
 
-    // Extract userId from the URL
-    const url = new URL(request.url);
-    const userId = url.pathname.split('/').filter(Boolean).pop();
+    const userId = params.userId;
 
     // Validate userId as a MongoDB ObjectId
     if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
