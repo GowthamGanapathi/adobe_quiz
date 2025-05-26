@@ -8,7 +8,7 @@ export async function POST(request: NextRequest, context: any) {
   try {
     await connectDB();
 
-    const { score, timeTaken, answers } = await request.json();
+    const { score, timeTaken } = await request.json();
 
     const userId = context.params.userId;
 
@@ -26,7 +26,6 @@ export async function POST(request: NextRequest, context: any) {
       {
         score,
         timeTaken,
-        answers,
         completed: true,
         completedAt: new Date(),
       },
