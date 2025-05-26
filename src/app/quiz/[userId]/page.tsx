@@ -198,7 +198,7 @@ export default function QuizPage() {
           setUserCompleted(false);
         }
       } catch {
-        setUserCompleted(true); // Block if user not found
+        setUserCompleted(false); // Allow if user not found
       }
     }
     checkUser();
