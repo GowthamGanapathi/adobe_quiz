@@ -29,7 +29,7 @@ export default function Home() {
         <div className="bg-white p-6 rounded-xl shadow-lg inline-block">
           <QRCode
             value={`${baseUrl}/join`}
-            size={256}
+            size={360}
             className="mx-auto"
           />
         </div>
