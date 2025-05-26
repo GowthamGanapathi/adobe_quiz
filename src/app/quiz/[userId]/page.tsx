@@ -5,12 +5,15 @@ import { useRouter, useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
 import Confetti from 'react-confetti';
+import questionsData from '@/questions.json';
 
 interface Question {
-  _id: string;
   question: string;
-  options: string[];
-  correctAnswer: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  correctanswer: string;
 }
 
 interface QuizState {
@@ -24,6 +27,11 @@ interface QuizState {
     timeTaken: number;
   }>;
 }
+
+const getRandomQuestions = (questions: Question[], count: number) => {
+  const shuffled = [...questions].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
 
 export default function QuizPage() {
   const params = useParams<{ userId: string }>();
@@ -42,7 +50,7 @@ export default function QuizPage() {
 
   const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
-    const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+    const isCorrect = selectedAnswer === currentQuestion.correctanswer;
     const timeTakenForQuestion = 5 - timeLeft;
 
     setQuizState((prev) => ({
@@ -52,7 +60,7 @@ export default function QuizPage() {
       answers: [
         ...prev.answers,
         {
-          questionId: currentQuestion._id,
+          questionId: String(quizState.currentQuestionIndex),
           selectedAnswer,
           isCorrect,
           timeTaken: timeTakenForQuestion,
@@ -95,10 +103,8 @@ export default function QuizPage() {
 
   const fetchQuestions = useCallback(async () => {
     try {
-      const response = await fetch('/api/questions');
-      if (!response.ok) throw new Error('Failed to fetch questions');
-      const data = await response.json();
-      setQuestions(data.questions);
+      // Randomly select 15 questions from the static JSON
+      setQuestions(getRandomQuestions(questionsData, 15));
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Failed to load questions');
       router.push('/');
@@ -187,7 +193,7 @@ export default function QuizPage() {
               </h2>
 
               <div className="grid gap-3">
-                {currentQuestion.options.map((option, index) => (
+                {[currentQuestion.option1, currentQuestion.option2, currentQuestion.option3, currentQuestion.option4].map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleAnswer(option)}
