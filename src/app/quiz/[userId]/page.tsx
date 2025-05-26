@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, useCallback } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
 import Confetti from 'react-confetti';
@@ -25,7 +25,9 @@ interface QuizState {
   }>;
 }
 
-export default function QuizPage({ params }: { params: { userId: string } }) {
+export default function QuizPage() {
+  const params = useParams<{ userId: string }>();
+  const userId = params.userId;
   const router = useRouter();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [quizState, setQuizState] = useState<QuizState>({
@@ -38,45 +40,7 @@ export default function QuizPage({ params }: { params: { userId: string } }) {
   const [isLoading, setIsLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
-
-  useEffect(() => {
-    if (quizState.currentQuestionIndex >= questions.length) {
-      handleQuizCompletion();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          handleTimeUp();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [quizState.currentQuestionIndex, questions.length]);
-
-  const fetchQuestions = async () => {
-    try {
-      const response = await fetch('/api/questions');
-      if (!response.ok) throw new Error('Failed to fetch questions');
-      const data = await response.json();
-      setQuestions(data.questions);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to load questions');
-      router.push('/');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleAnswer = (selectedAnswer: string) => {
+  const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
     const timeTakenForQuestion = 5 - timeLeft;
@@ -98,15 +62,15 @@ export default function QuizPage({ params }: { params: { userId: string } }) {
     }));
 
     setTimeLeft(5);
-  };
+  }, [questions, quizState.currentQuestionIndex, timeLeft]);
 
-  const handleTimeUp = () => {
+  const handleTimeUp = useCallback(() => {
     handleAnswer(''); // Empty string indicates time up
-  };
+  }, [handleAnswer]);
 
-  const handleQuizCompletion = async () => {
+  const handleQuizCompletion = useCallback(async () => {
     try {
-      const response = await fetch(`/api/quiz/${params.userId}/complete`, {
+      const response = await fetch(`/api/quiz/${userId}/complete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +91,45 @@ export default function QuizPage({ params }: { params: { userId: string } }) {
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Failed to save quiz results');
     }
-  };
+  }, [userId, quizState, router]);
+
+  const fetchQuestions = useCallback(async () => {
+    try {
+      const response = await fetch('/api/questions');
+      if (!response.ok) throw new Error('Failed to fetch questions');
+      const data = await response.json();
+      setQuestions(data.questions);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to load questions');
+      router.push('/');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [router]);
+
+  useEffect(() => {
+    fetchQuestions();
+  }, [fetchQuestions]);
+
+  useEffect(() => {
+    if (quizState.currentQuestionIndex >= questions.length) {
+      handleQuizCompletion();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleTimeUp();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [quizState.currentQuestionIndex, questions.length, handleQuizCompletion, handleTimeUp]);
 
   if (isLoading) {
     return (
