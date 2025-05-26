@@ -54,6 +54,21 @@ export default function ResultsPage() {
     );
   }
 
+  if (results.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            No quiz results yet
+          </h2>
+          <p className="text-lg text-gray-600">
+            Once users participate in the quiz, their results will appear here.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
       <div className="max-w-7xl mx-auto">
