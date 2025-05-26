@@ -37,7 +37,7 @@ export default function ResultsPage() {
     fetchResults();
     const interval = setInterval(() => {
       setShowConfetti(prev => !prev);
-    }, 2000); // 2 seconds
+    }, 10000); // 2 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -111,15 +111,18 @@ export default function ResultsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-xl shadow-lg p-6"
+            className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center justify-center min-w-[260px] min-h-[220px] border border-blue-100"
+            style={{
+              background: "linear-gradient(135deg, #f0f7ff 0%, #e0e7ff 100%)",
+            }}
           >
-            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-              <UsersIcon className="h-6 w-6 text-blue-600" />
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 mb-6 shadow-sm">
+              <UsersIcon className="h-8 w-8 text-blue-500" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center tracking-wide">
               Total Participants
             </h3>
-            <p className="text-3xl font-bold text-blue-600 text-center">
+            <p className="text-5xl font-extrabold text-blue-600 text-center drop-shadow-lg mt-2">
               {stats.totalParticipants}
             </p>
           </motion.div>
