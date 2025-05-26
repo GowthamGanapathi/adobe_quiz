@@ -1,6 +1,6 @@
 [
   {
-    "question": "💼☕️📞   Guess the Office Scenario!",
+    "question": "💼 ☕️ 📞   Guess the Office Scenario!",
     "option1": "Inbox Overflow",
     "option2": "Emergency Exit",
     "option3": "Brainstorm Session",
@@ -112,107 +112,123 @@
     "correctanswer": "Thinking Out Loud"
   },
   {
-    "question": "Lightning Round: Emoji Edition",
+    "question": "📈 🖊️ 💹  Lightning Round: Emoji Edition",
     "option1": "Calendar Reminder",
     "option2": "Performance Review",
     "option3": "Brainstorm Session",
     "option4": "Work From Vacation",
-    "correctanswer": ""
+    "correctanswer": "Performance Review"
   },
   {
-    "question": "Expressed in Emoji!",
+    "question": "📬 📥 📧      Expressed in Emoji!",
     "option1": "Inbox Overflow",
     "option2": "Sent an Email",
     "option3": "No Internet",
     "option4": "Signing Documents",
-    "correctanswer": ""
+    "correctanswer": "Inbox Overflow"
   },
   {
-    "question": "Emoji IQ Test",
+    "question": "🧼 🖐️ 🧴   Emoji IQ Test",
     "option1": "Sanitizing Hands",
     "option2": "IT Fix in Progress",
     "option3": "Hi-fi",
     "option4": "Inbox Overflow",
-    "correctanswer": ""
+    "correctanswer": "Sanitizing Hands"
   },
   {
-    "question": "The Great Emoji Guess-Off",
+    "question": "📢 📄 🪧 The Great Emoji Guess-Off",
     "option1": "Letter Pad",
     "option2": "Speaker",
     "option3": "Coffee’s Gone Cold",
     "option4": "Announcement",
-    "correctanswer": ""
+    "correctanswer": "Announcement"
   },
   {
-    "question": "Expressed in Emoji!",
-    "option1": "Cake Shop",
-    "option2": "Coffee and Bread",
-    "option3": "Chai Point",
-    "option4": "Office Breakfast",
-    "correctanswer": ""
-  },
-  {
-    "question": "Hidden Message in Emojis",
+    "question": "✍️ 🖊️ 📋   Hidden Message in Emojis",
     "option1": "Handwriting",
     "option2": "Signing Documents",
     "option3": "Writing Pad",
     "option4": "Notepad",
-    "correctanswer": ""
+    "correctanswer": "Signing Documents"
   },
   {
-    "question": "What’s the Hidden Meaning?",
+    "question": "🕵️‍♀️ 🔍 🧾 What’s the Hidden Meaning?",
     "option1": "Brainstorm Session",
     "option2": "Monthly Receipt",
     "option3": "Person Missing !!",
     "option4": "Audit Day",
-    "correctanswer": ""
+    "correctanswer": "Audit Day"
   },
   {
-    "question": "Emoji Guessing Game",
+    "question": "🧠 🧊 😶 Emoji Guessing Game",
     "option1": "Silent Mode",
     "option2": "Not Speaking",
     "option3": "Brain Freeze",
     "option4": "Ice Cubes",
-    "correctanswer": ""
+    "correctanswer": "Brain Freeze"
   },
   {
-    "question": "Emoji Translator Needed!",
+    "question": "🎧 👨‍💻 🔇 Emoji Translator Needed!",
     "option1": "Silence, please!",
     "option2": "Training Session",
     "option3": "Morning Meeting",
     "option4": "Focus Mode",
-    "correctanswer": ""
+    "correctanswer": "Focus Mode"
   },
   {
-    "question": "Feel the Emoji Vibe",
+    "question": "☝️ 🔵 🌙  Feel the Emoji Vibe",
     "option1": "Once sec please",
     "option2": "One",
     "option3": "Once in a blue moon",
     "option4": "Blue moon",
-    "correctanswer": ""
+    "correctanswer": "Once in a blue moon"
   },
   {
-    "question": "What’s the Emoji Saying?",
+    "question": "🍎 ☀️ 🩺 🛑   What’s the Emoji Saying?",
     "option1": "Green Apples are Stopped",
     "option2": "Stop visiting the doctor every day",
     "option3": "Apples are coming in sunlight",
     "option4": "An apple a day keeps the doctor away",
-    "correctanswer": ""
+    "correctanswer": "An apple a day keeps the doctor away"
   },
   {
-    "question": "Feel the Emoji Vibe",
+    "question": "💡 📝 🧠 Feel the Emoji Vibe",
     "option1": "Idea Generation",
     "option2": "Audit Day",
     "option3": "Report Card",
     "option4": "Electricity Report",
-    "correctanswer": ""
+    "correctanswer": "Idea Generation"
   },
   {
-    "question": "Emoji Guessing Game",
+    "question": "🐝 ➡️ 🔙   Emoji Guessing Game",
     "option1": "Dropping Off",
     "option2": "None of the above",
     "option3": "BRB",
     "option4": "Take Right",
-    "correctanswer": ""
+    "correctanswer": "BRB"
+  },
+  {
+    "question": "🧾 💰 📝  Emoji Guessing Game",
+    "option1": "Work From Vacation",
+    "option2": "None of the above",
+    "option3": "Announcement",
+    "option4": "Expense Report",
+    "correctanswer": "Expense Report"
+  },
+  {
+    "question": "🤐 📱 🤫  Emoji Guessing Game",
+    "option1": "Workstation",
+    "option2": "Waiting for Approval",
+    "option3": "Silent Mode",
+    "option4": "Performance Review",
+    "correctanswer": "Silent Mode"
+  },
+  {
+    "question": "🐢 ⏳ 💼  Emoji Guessing Game",
+    "option1": "Loading...",
+    "option2": "Slow Work Day",
+    "option3": "Thinking Out Loud",
+    "option4": "Waiting for Approval",
+    "correctanswer": "Slow Work Day"
   }
 ]
