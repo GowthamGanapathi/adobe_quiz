@@ -132,10 +132,10 @@ export default function ResultsPage() {
         <div className="mb-6 flex justify-center">
           <input
             type="text"
-            placeholder="Search by name, LDAP, or mobile"
+            placeholder="Search by name or LDAP"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder-gray-500 bg-white"
           />
         </div>
 
