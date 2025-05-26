@@ -3,17 +3,14 @@ import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
 import mongoose from 'mongoose';
 
-interface Params {
-  userId: string;
-}
-
-export async function POST(request: NextRequest, { params }: { params: Params }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function POST(request: NextRequest, context: any) {
   try {
     await connectDB();
 
     const { score, timeTaken, answers } = await request.json();
 
-    const userId = params.userId;
+    const userId = context.params.userId;
 
     // Validate userId as a MongoDB ObjectId
     if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
