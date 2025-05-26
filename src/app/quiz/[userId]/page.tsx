@@ -47,6 +47,7 @@ export default function QuizPage() {
   const [timeLeft, setTimeLeft] = useState(5);
   const [isLoading, setIsLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [userCompleted, setUserCompleted] = useState<boolean | null>(null);
 
   const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
@@ -136,6 +137,37 @@ export default function QuizPage() {
 
     return () => clearInterval(timer);
   }, [quizState.currentQuestionIndex, questions.length, handleQuizCompletion, handleTimeUp]);
+
+  // Fetch user info on mount
+  useEffect(() => {
+    async function checkUser() {
+      try {
+        const res = await fetch(`/api/user/${userId}`);
+        if (!res.ok) throw new Error('User not found');
+        const user = await res.json();
+        if (user.completed) {
+          setUserCompleted(true);
+        } else {
+          setUserCompleted(false);
+        }
+      } catch {
+        setUserCompleted(true); // Block if user not found
+      }
+    }
+    checkUser();
+  }, [userId]);
+
+  if (userCompleted === true) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>
+          <h2 className="text-2xl font-bold text-red-600 mb-4">
+            You have already attempted the quiz.
+          </h2>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
