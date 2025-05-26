@@ -6,6 +6,8 @@ import { TrophyIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 interface UserResult {
   name: string;
+  ldap?: string;
+  mobileNumber?: string;
   score: number;
   timeTaken: number;
   completed: boolean;
@@ -27,6 +29,7 @@ export default function ResultsPage() {
     averageTime: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetchResults();
@@ -45,6 +48,16 @@ export default function ResultsPage() {
       setIsLoading(false);
     }
   };
+
+  // Filtered results based on search
+  const filteredResults = results.filter(result => {
+    const term = search.toLowerCase();
+    return (
+      result.name.toLowerCase().includes(term) ||
+      (result.ldap && result.ldap.toLowerCase().includes(term)) ||
+      (result.mobileNumber && result.mobileNumber.includes(term))
+    );
+  });
 
   if (isLoading) {
     return (
@@ -122,6 +135,17 @@ export default function ResultsPage() {
           </motion.div>
         </div>
 
+        {/* Search Input */}
+        <div className="mb-6 flex justify-center">
+          <input
+            type="text"
+            placeholder="Search by name, LDAP, or mobile"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
         {/* Leaderboard */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -135,7 +159,7 @@ export default function ResultsPage() {
             </h2>
           </div>
           <div className="divide-y divide-gray-200">
-            {results.map((result, index) => (
+            {filteredResults.map((result, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
@@ -156,6 +180,12 @@ export default function ResultsPage() {
                     <p className="text-sm text-gray-500">
                       Score: {result.score} / 15
                     </p>
+                    {result.ldap && (
+                      <p className="text-xs text-gray-400">LDAP: {result.ldap}</p>
+                    )}
+                    {result.mobileNumber && (
+                      <p className="text-xs text-gray-400">Mobile: {result.mobileNumber}</p>
+                    )}
                   </div>
                 </div>
                 <div className="text-right">
@@ -174,6 +204,11 @@ export default function ResultsPage() {
                 </div>
               </motion.div>
             ))}
+            {filteredResults.length === 0 && (
+              <div className="px-6 py-4 text-center text-gray-500">
+                No results found.
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
