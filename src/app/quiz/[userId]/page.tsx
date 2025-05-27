@@ -56,7 +56,7 @@ export default function QuizPage() {
     timeTaken: 0,
     answers: [],
   });
-  const [timeLeft, setTimeLeft] = useState(7);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
   const [userCompleted, setUserCompleted] = useState<boolean | null>(null);
@@ -65,7 +65,7 @@ export default function QuizPage() {
   const handleAnswer = useCallback((selectedAnswer: string) => {
     const currentQuestion = questions[quizState.currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctanswer;
-    const timeTakenForQuestion = 7 - timeLeft;
+    const timeTakenForQuestion = 10 - timeLeft;
 
     setQuizState((prev) => ({
       ...prev,
@@ -83,7 +83,7 @@ export default function QuizPage() {
       currentQuestionIndex: prev.currentQuestionIndex + 1,
     }));
 
-    setTimeLeft(7);
+    setTimeLeft(10);
   }, [questions, quizState.currentQuestionIndex, timeLeft]);
 
   const handleTimeUp = useCallback(() => {
@@ -99,7 +99,7 @@ export default function QuizPage() {
           // If forced, use current state, or zero if nothing answered
           if (quizState.answers.length === 0) {
             score = 0;
-            timeTaken = 105;
+            timeTaken = 150; // 15 questions * 10 seconds
           }
         }
         const response = await fetch(`/api/quiz/${userId}/complete`, {
@@ -162,14 +162,14 @@ export default function QuizPage() {
     return () => clearInterval(timer);
   }, [quizState.currentQuestionIndex, questions.length, handleQuizCompletion, handleTimeUp]);
 
-  // Auto-submit after 105 seconds (15 questions * 7 seconds)
+  // Auto-submit after 150 seconds (15 questions * 10 seconds)
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!autoSubmitRef.current) {
         autoSubmitRef.current = true;
         handleQuizCompletion(true); // forced submit
       }
-    }, 105000); // 105 seconds (changed from 150 seconds)
+    }, 150000); // 150 seconds (15 questions * 10 seconds)
     return () => clearTimeout(timer);
   }, [handleQuizCompletion]);
 
