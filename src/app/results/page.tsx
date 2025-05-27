@@ -148,11 +148,11 @@ export default function ResultsPage() {
         >
           <div className="px-6 py-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold text-gray-800">
-              Leaderboard
+              Top 10 Leaderboard
             </h2>
           </div>
           <div className="divide-y divide-gray-200">
-            {filteredResults.map((result, index) => (
+            {filteredResults.slice(0, 10).map((result, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}

@@ -70,7 +70,7 @@ export default function JoinPage() {
 
             <div>
               <label htmlFor="ldap" className="block text-sm font-medium text-gray-900">
-                LDAP ID
+                LDAP
               </label>
               <input
                 type="text"
