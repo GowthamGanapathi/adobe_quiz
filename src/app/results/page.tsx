@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { UsersIcon } from '@heroicons/react/24/outline';
+import { UsersIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import Confetti from 'react-confetti';
+import * as XLSX from 'xlsx';
 
 interface UserResult {
   name: string;
@@ -55,6 +56,48 @@ export default function ResultsPage() {
     }
   };
 
+  const handleDownload = () => {
+    // Sort results by score (descending) and time taken (ascending)
+    const sortedResults = [...results].sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+      return a.timeTaken - b.timeTaken;
+    });
+    console.log(sortedResults);
+
+    // Prepare data for Excel
+    const excelData = sortedResults.map((result, index) => ({
+      'Rank': index + 1,
+      'Name': result.name,
+      'LDAP': result.ldap || 'N/A',
+      'Score': result.score,
+      'Time Taken (seconds)': Math.round(result.timeTaken),
+      'Status': result.completed ? 'Completed' : 'In Progress'
+    }));
+
+    // Create worksheet
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    
+    // Set column widths
+    const wscols = [
+      { wch: 6 },  // Rank
+      { wch: 30 }, // Name
+      { wch: 15 }, // LDAP
+      { wch: 8 },  // Score
+      { wch: 15 }, // Time Taken
+      { wch: 12 }  // Status
+    ];
+    ws['!cols'] = wscols;
+
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Quiz Results');
+
+    // Generate Excel file
+    XLSX.writeFile(wb, 'quiz_results.xlsx');
+  };
+
   // Filtered results based on search
   const filteredResults = results.filter(result => {
     const term = search.toLowerCase();
@@ -100,9 +143,16 @@ export default function ResultsPage() {
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
             Quiz Results
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 mb-4">
             See how everyone performed in the quiz!
           </p>
+          <button
+            onClick={handleDownload}
+            className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+          >
+            <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
+            Download Results
+          </button>
         </motion.div>
 
         {/* Stats Cards */}

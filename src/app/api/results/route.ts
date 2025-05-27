@@ -9,7 +9,7 @@ export async function GET() {
     // Get all users and sort by score (descending) and time taken (ascending)
     const users = await User.find({})
       .sort({ score: -1, timeTaken: 1 })
-      .select('name score timeTaken completed');
+      .select('name ldap score timeTaken completed');
 
     // Calculate statistics
     const totalParticipants = users.length;
